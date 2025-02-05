@@ -8,6 +8,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(N_LEDS, PIN, NEO_GRB + NEO_KHZ800);
 void setup() {
   strip.begin();
   Serial.begin(9600);
+  randomSeed(analogRead(0));
 }
 
 void loop() {
@@ -15,14 +16,16 @@ void loop() {
   chase(strip.Color(255, 0, 0)); // Red
   chase(strip.Color(0, 255, 0)); // Green
   chase(strip.Color(0, 0, 255)); // Blue
-  breathe(strip.Color(random(0, 255), random(0, 255), random(0, 255)));
+  breathe(strip.Color(random(0, 256), random(0, 256), random(0, 256)));
   chase(strip.Color(255, 0, 0)); // Red
   chase(strip.Color(0, 0, 255)); // Blue
   chase(strip.Color(255, 0, 0)); // Red
   chase(strip.Color(0, 0, 255)); // Blue
   chase(strip.Color(255, 0, 0)); // Red
   chase(strip.Color(0, 0, 255)); // Blue
-  cycle();
+  cycle_red();
+  cycle_green();
+  cycle_blue();
 }
 
 static void chase(uint32_t c) {
@@ -71,5 +74,35 @@ static void cycle() {
         delay(25);
       }
     }
+  }
+}
+
+static void cycle_red() {
+  for(uint16_t r=0; r<256; r+=32) {
+    for(uint16_t i=0; i<40; i++) {
+      strip.setPixelColor(i, strip.Color(r, 0, 0));
+    }
+    strip.show();
+    delay(100);
+  }
+}
+
+static void cycle_green() {
+  for(uint16_t g=0; g<256; g+=32) {
+    for(uint16_t i=0; i<40; i++) {
+      strip.setPixelColor(i, strip.Color(0, g, 0));
+    }
+    strip.show();
+    delay(100);
+  }
+}
+
+static void cycle_blue() {
+  for(uint16_t b=0; b<256; b+=32) {
+    for(uint16_t i=0; i<40; i++) {
+      strip.setPixelColor(i, strip.Color(0, 0, b));
+    }
+    strip.show();
+    delay(100);
   }
 }
