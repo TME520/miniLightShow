@@ -37,7 +37,9 @@ In Arduino IDE, open [this file](./miniLightShow.ino), then go to Sketch | Uploa
 
 Plug the Arduino to a USB power source, you should see RGB patterns and effects
 
-7a. 3D print the light diffuser (optional)
+7. Prepare a light diffuser
+
+   7.1. 3D print the light diffuser (optional)
 
 The Blender file is available [here](./assets/minilightshowv1.blend). The STL file is available [here](./assets/minilightshowv1.stl).
 If you own a EasyThreed K1, K2, K7, K9, X1 or X2 3D printer (the cheap ones from Ali Express), you can use [this GCode file](./assets/CFFFP_minilightshowv1.gcode).
@@ -48,15 +50,13 @@ I use [UltiMaker Cura](https://ultimaker.com/software/ultimaker-cura/), it is fo
 
 Once printed, simply glue it on the header so that it covers the RGB matrix. It will act as a light diffuser, making the effects nicer.
 
-7b. Use a 6x6 piece of tracing paper (optional)
+   7.2. Use a 6x6 piece of tracing paper (optional)
 
-Once ready, simply glue it on the header so that it covers the RGB matrix. It will act as a light diffuser, making the effects nicer.
+If you don't own a 3D printer, cut a 6x6 centimeters square in a sheet of tracing paper. Once ready, simply glue it on the header so that it covers the RGB matrix. It will act as a light diffuser, making the effects nicer.
 
 8. Eat the banana
 
 Fruits and vegetables are not boring, they are the natural fuel made for your body.
-
-## Programming
 
 ## Troubleshooting
 
