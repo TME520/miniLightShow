@@ -4,7 +4,7 @@
 
 A nice weekend project for beginners, affordable, fun and no soldering required.
 
-![miniLightShow Demo](miniLightShow-demo.gif "miniLightShow Demo)
+![miniLightShow Demo](miniLightShow-demo.gif "miniLightShow Demo")
 
 ## Parts
 
