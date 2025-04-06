@@ -1,6 +1,6 @@
 # miniLightShow
 
-**A RGB light with various patterns and effects based on Arduino and Duinotech 40 LEDs matric shield**
+**A RGB light with various patterns and effects based on Arduino and Duinotech 40 LEDs matrix shield**
 
 A nice weekend project for beginners, affordable, fun and no soldering required.
 
@@ -21,17 +21,45 @@ A nice weekend project for beginners, affordable, fun and no soldering required.
 
 2. Test the Arduino Uno/Leonardo
 
+Plug your Arduino on a USB port, open Arduino IDE and go to Tools | Get Board Info. You should see the BN, VID, PID and Serial Number. If not, go to Troubleshooting.
+
 3. Assemble the enclosure
 
 4. Plug the RGB LED hat on top of the Arduino
 
 5. Upload the code
 
+In Arduino IDE, open ![Program](./miniLightShow.ino "this file"), then go to Sketch | Upload. If it doesn't work, go to Troubleshooting.
+
 6. Test
 
-7. 3D print the light diffuser (optional)
+Plug the Arduino to a USB power source, you should see RGB patterns and effects
+
+7a. 3D print the light diffuser (optional)
+
+The Blender file is available ![Blender file](./assets/minilightshowv1.blend "here"). The STL file is available ![STL file](./assets/minilightshowv1.stl "here").
+If you own a EasyThreed K1, K2, K7, K9, X1 or X2 3D printer (the cheap ones from Ali Express), you can use ![GCODE file](./assets/CFFFP_minilightshowv1.gcode "this GCode file").
+
+Once printed, simply glue it on the header so that it covers the RGB matrix. It will act as a light diffuser, making the effects nicer.
+
+7b. Use a 6x6 piece of tracing paper (optional)
+
+Once ready, simply glue it on the header so that it covers the RGB matrix. It will act as a light diffuser, making the effects nicer.
+
+8. Eat the banana
+
+Fruits and vegetables are not boring, they are the natural fuel made for your body.
 
 ## Programming
 
 ## Troubleshooting
+
+### Arduino is not detected by Arduino IDE
+
+1. Make sure the USB cable you use is Power + Data. You can find cheap testing devices on Ali Express for that. Some cables only do power and won't work at all
+2. Unplug, replug, retry
+3. In Tools | Board, double-check you selected the right Arduino model
+4. In Tools | Port, make sure a USB device is selected
+
+These steps should cover most cases. If you can't make it work, go to the ![Arduino Sub-Reddit](https://www.reddit.com/r/arduino/ "Arduino Sub-Reddit").
 
