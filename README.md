@@ -29,7 +29,7 @@ Plug your Arduino on a USB port, open Arduino IDE and go to Tools | Get Board In
 
 5. Upload the code
 
-In Arduino IDE, open ![Program](./miniLightShow.ino "this file"), then go to Sketch | Upload. If it doesn't work, go to Troubleshooting.
+In Arduino IDE, open [this file](./miniLightShow.ino), then go to Sketch | Upload. If it doesn't work, go to Troubleshooting.
 
 6. Test
 
@@ -37,8 +37,8 @@ Plug the Arduino to a USB power source, you should see RGB patterns and effects
 
 7a. 3D print the light diffuser (optional)
 
-The Blender file is available ![Blender file](./assets/minilightshowv1.blend "here"). The STL file is available ![STL file](./assets/minilightshowv1.stl "here").
-If you own a EasyThreed K1, K2, K7, K9, X1 or X2 3D printer (the cheap ones from Ali Express), you can use ![GCODE file](./assets/CFFFP_minilightshowv1.gcode "this GCode file").
+The Blender file is available [here](./assets/minilightshowv1.blend). The STL file is available [here](./assets/minilightshowv1.stl).
+If you own a EasyThreed K1, K2, K7, K9, X1 or X2 3D printer (the cheap ones from Ali Express), you can use [this GCode file](./assets/CFFFP_minilightshowv1.gcode).
 
 Once printed, simply glue it on the header so that it covers the RGB matrix. It will act as a light diffuser, making the effects nicer.
 
@@ -60,6 +60,8 @@ Fruits and vegetables are not boring, they are the natural fuel made for your bo
 2. Unplug, replug, retry
 3. In Tools | Board, double-check you selected the right Arduino model
 4. In Tools | Port, make sure a USB device is selected
+
+You can also unplug the Arduino, keep the reset button pressed, plug it, go to Sketch | Upload and release the reset button.
 
 These steps should cover most cases. If you can't make it work, go to the ![Arduino Sub-Reddit](https://www.reddit.com/r/arduino/ "Arduino Sub-Reddit").
 
