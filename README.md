@@ -4,6 +4,8 @@
 
 A nice weekend project for beginners, affordable, fun and no soldering required.
 
+![miniLightShow Demo](miniLightShow-demo.gif "miniLightShow Demo)
+
 ## Parts
 
 - 1 x Arduino Uno/Leonardo
@@ -40,6 +42,10 @@ Plug the Arduino to a USB power source, you should see RGB patterns and effects
 The Blender file is available [here](./assets/minilightshowv1.blend). The STL file is available [here](./assets/minilightshowv1.stl).
 If you own a EasyThreed K1, K2, K7, K9, X1 or X2 3D printer (the cheap ones from Ali Express), you can use [this GCode file](./assets/CFFFP_minilightshowv1.gcode).
 
+The STL file must be turned into a GCode file; this must be done on a per-printer basis, as GCode is specific to the brand and model of every 3D printer.
+
+I use [UltiMaker Cura](https://ultimaker.com/software/ultimaker-cura/), it is for free and easy to use. Follow [this YouTube tutorial](https://youtu.be/L6ijXqF0rMg?feature=shared) if you need help.
+
 Once printed, simply glue it on the header so that it covers the RGB matrix. It will act as a light diffuser, making the effects nicer.
 
 7b. Use a 6x6 piece of tracing paper (optional)
@@ -63,5 +69,5 @@ Fruits and vegetables are not boring, they are the natural fuel made for your bo
 
 You can also unplug the Arduino, keep the reset button pressed, plug it, go to Sketch | Upload and release the reset button.
 
-These steps should cover most cases. If you can't make it work, go to the ![Arduino Sub-Reddit](https://www.reddit.com/r/arduino/ "Arduino Sub-Reddit").
+These steps should cover most cases. If you can't make it work, go to the [Arduino Sub-Reddit](https://www.reddit.com/r/arduino/).
 
