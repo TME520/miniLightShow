@@ -13,6 +13,16 @@ void setup() {
 }
 
 void loop() {
+  twinkle(strip.Color(8, 8, 8), strip.Color(255, 255, 255), 60, 40);
+
+  twinkle(strip.Color(8, 0, 0), strip.Color(255, 0, 0), 60, 40);
+  twinkle(strip.Color(0, 8, 0), strip.Color(0, 255, 0), 60, 40);
+  twinkle(strip.Color(0, 0, 8), strip.Color(0, 0, 255), 60, 40);
+
+  twinkle(strip.Color(32, 0, 0), strip.Color(random(0, 256), random(0, 256), random(0, 256)), 60, 40);
+  twinkle(strip.Color(0, 32, 0), strip.Color(random(0, 256), random(0, 256), random(0, 256)), 60, 40);
+  twinkle(strip.Color(0, 0, 32), strip.Color(random(0, 256), random(0, 256), random(0, 256)), 60, 40);
+  
   chase(strip.Color(255, 0, 0)); // Red
   chase(strip.Color(0, 255, 0)); // Green
   chase(strip.Color(0, 0, 255)); // Blue
@@ -24,6 +34,10 @@ void loop() {
   cycle_red();
   cycle_green();
   cycle_blue();
+
+  twinkle(strip.Color(64, 0, 0), strip.Color(255, 0, 0), 60, 40);
+  twinkle(strip.Color(0, 64, 0), strip.Color(0, 255, 0), 60, 40);
+  twinkle(strip.Color(0, 0, 64), strip.Color(0, 0, 255), 60, 40);
 
   breathe(strip.Color(random(0, 256), random(0, 256), random(0, 256)));
   chase(strip.Color(random(0, 256), 0, 0)); // Random red
