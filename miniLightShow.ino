@@ -85,6 +85,8 @@ void loop() {
   chase(strip.Color(0, 0, 255)); // Blue
   cycle_blue();
   chase(strip.Color(0, 0, 255)); // Blue
+
+  twinkle(strip.Color(8, 8, 8), strip.Color(255, 255, 255), 60, 40);
 }
 
 static void chase(uint32_t c) {
@@ -167,5 +169,31 @@ static void cycle_blue() {
     }
     strip.show();
     delay(100);
+  }
+}
+
+static void twinkle(uint32_t backgroundColor, uint32_t sparkleColor, uint16_t sparkleCount, uint16_t sparkleDuration) {
+  strip.setBrightness(127);
+
+  for(uint16_t i=0; i<strip.numPixels(); i++) {
+    strip.setPixelColor(i, backgroundColor);
+  }
+  strip.show();
+
+  uint16_t resetDelay = sparkleDuration / 2;
+  if(resetDelay == 0) {
+    resetDelay = 1;
+  }
+
+  for(uint16_t sparkle=0; sparkle<sparkleCount; sparkle++) {
+    uint16_t pixel = random(strip.numPixels());
+
+    strip.setPixelColor(pixel, sparkleColor);
+    strip.show();
+    delay(sparkleDuration);
+
+    strip.setPixelColor(pixel, backgroundColor);
+    strip.show();
+    delay(resetDelay);
   }
 }
