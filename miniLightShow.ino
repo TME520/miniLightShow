@@ -15,9 +15,15 @@ void setup() {
 void loop() {
   twinkle(strip.Color(8, 8, 8), strip.Color(255, 255, 255), 60, 40);
 
+  auroraWave(strip.Color(12, 4, 32), strip.Color(0, 64, 48), 6, 6);
+
   twinkle(strip.Color(8, 0, 0), strip.Color(255, 0, 0), 60, 40);
   twinkle(strip.Color(0, 8, 0), strip.Color(0, 255, 0), 60, 40);
   twinkle(strip.Color(0, 0, 8), strip.Color(0, 0, 255), 60, 40);
+
+  auroraWave(strip.Color(8, 0, 0), strip.Color(255, 0, 0), 6, 6);
+  auroraWave(strip.Color(0, 8, 0), strip.Color(0, 255, 0), 6, 6);
+  auroraWave(strip.Color(0, 0, 8), strip.Color(0, 0, 255), 6, 6);
 
   twinkle(strip.Color(32, 0, 0), strip.Color(random(0, 256), random(0, 256), random(0, 256)), 60, 40);
   twinkle(strip.Color(0, 32, 0), strip.Color(random(0, 256), random(0, 256), random(0, 256)), 60, 40);
@@ -39,7 +45,12 @@ void loop() {
   twinkle(strip.Color(0, 64, 0), strip.Color(0, 255, 0), 60, 40);
   twinkle(strip.Color(0, 0, 64), strip.Color(0, 0, 255), 60, 40);
 
+  auroraWave(strip.Color(64, 0, 0), strip.Color(255, 0, 0), 6, 6);
+  auroraWave(strip.Color(0, 64, 0), strip.Color(0, 255, 0), 6, 6);
+  auroraWave(strip.Color(0, 0, 64), strip.Color(0, 0, 255), 6, 6);
+
   breathe(strip.Color(random(0, 256), random(0, 256), random(0, 256)));
+  auroraWave(strip.Color(random(0, 256), random(0, 256), random(0, 256)), strip.Color(random(0, 256), random(0, 256), random(0, 256)), 6, 6);
   chase(strip.Color(random(0, 256), 0, 0)); // Random red
   chase(strip.Color(0, random(0, 256), 0)); // Random green
   chase(strip.Color(0, 0, random(0, 256))); // Random blue
