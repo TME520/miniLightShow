@@ -5,6 +5,43 @@
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(N_LEDS, PIN, NEO_GRB + NEO_KHZ800);
 
+const uint8_t GRID_WIDTH = 8;
+const uint8_t GRID_HEIGHT = N_LEDS / GRID_WIDTH;
+
+// Shape definitions for the magic_shapes effect. Each value represents a pixel:
+// 0 = background, >0 = index into the palette for that shape (1-based).
+const uint8_t SHAPE_SQUARE[GRID_WIDTH * GRID_HEIGHT] = {
+  0, 1, 1, 1, 1, 1, 1, 0,
+  1, 2, 2, 2, 2, 2, 2, 1,
+  1, 2, 3, 3, 3, 3, 2, 1,
+  1, 2, 3, 3, 3, 3, 2, 1,
+  0, 1, 1, 1, 1, 1, 1, 0
+};
+
+const uint8_t SHAPE_HEART[GRID_WIDTH * GRID_HEIGHT] = {
+  0, 1, 0, 0, 0, 0, 1, 0,
+  1, 2, 1, 0, 0, 1, 2, 1,
+  1, 3, 2, 1, 1, 2, 3, 1,
+  0, 1, 3, 2, 2, 3, 1, 0,
+  0, 0, 1, 3, 3, 1, 0, 0
+};
+
+const uint8_t SHAPE_TRIANGLE[GRID_WIDTH * GRID_HEIGHT] = {
+  0, 0, 0, 1, 1, 0, 0, 0,
+  0, 0, 1, 2, 2, 1, 0, 0,
+  0, 1, 2, 3, 3, 2, 1, 0,
+  1, 2, 3, 3, 3, 3, 2, 1,
+  1, 1, 1, 1, 1, 1, 1, 1
+};
+
+const uint8_t SHAPE_CIRCLE[GRID_WIDTH * GRID_HEIGHT] = {
+  0, 0, 1, 1, 1, 1, 0, 0,
+  0, 1, 2, 2, 2, 2, 1, 0,
+  1, 2, 3, 3, 3, 3, 2, 1,
+  0, 1, 2, 2, 2, 2, 1, 0,
+  0, 0, 1, 1, 1, 1, 0, 0
+};
+
 void setup() {
   strip.begin();
   Serial.begin(9600);
@@ -16,6 +53,8 @@ void loop() {
   twinkle(strip.Color(8, 8, 8), strip.Color(255, 255, 255), 60, 40);
 
   auroraWave(strip.Color(12, 4, 32), strip.Color(0, 64, 48), 6, 6);
+
+  magic_shapes();
 
   twinkle(strip.Color(8, 0, 0), strip.Color(255, 0, 0), 60, 40);
   twinkle(strip.Color(0, 8, 0), strip.Color(0, 255, 0), 60, 40);
@@ -114,6 +153,77 @@ void loop() {
   auroraWave(strip.Color(12, 4, 32), strip.Color(0, 64, 48), 6, 6);
 
   twinkle(strip.Color(8, 8, 8), strip.Color(255, 255, 255), 60, 40);
+}
+
+static void drawMagicShape(const uint8_t *shape, uint32_t backgroundColor, const uint32_t *palette, uint8_t paletteSize) {
+  strip.setBrightness(127);
+
+  for(uint8_t row=0; row<GRID_HEIGHT; row++) {
+    for(uint8_t col=0; col<GRID_WIDTH; col++) {
+      uint16_t index = row * GRID_WIDTH + col;
+      uint8_t value = shape[index];
+
+      if(value == 0 || paletteSize == 0) {
+        strip.setPixelColor(index, backgroundColor);
+      } else {
+        uint8_t paletteIndex = (value - 1) % paletteSize;
+        strip.setPixelColor(index, palette[paletteIndex]);
+      }
+    }
+  }
+
+  strip.show();
+}
+
+static void shimmerMagicShape(const uint8_t *shape, const uint32_t *palette, uint8_t paletteSize, uint32_t backgroundColor, uint16_t steps, uint16_t stepDelay) {
+  if(paletteSize == 0) {
+    return;
+  }
+
+  for(uint16_t step=0; step<steps; step++) {
+    uint16_t pixel = random(N_LEDS);
+
+    if(shape[pixel] == 0) {
+      continue;
+    }
+
+    uint8_t paletteIndex = (shape[pixel] - 1) % paletteSize;
+    uint32_t baseColor = palette[paletteIndex];
+    uint32_t sparkleColor = blendColors(strip.Color(255, 255, 255), baseColor, 192);
+
+    strip.setPixelColor(pixel, sparkleColor);
+    strip.show();
+    delay(stepDelay);
+
+    drawMagicShape(shape, backgroundColor, palette, paletteSize);
+  }
+}
+
+static void magic_shapes() {
+  const uint8_t *shapes[] = {SHAPE_SQUARE, SHAPE_HEART, SHAPE_TRIANGLE, SHAPE_CIRCLE};
+  const uint8_t paletteSizes[] = {3, 3, 3, 3};
+  const uint32_t palettes[][3] = {
+    {strip.Color(255, 96, 0), strip.Color(255, 180, 0), strip.Color(255, 255, 96)},
+    {strip.Color(255, 0, 72), strip.Color(255, 64, 144), strip.Color(255, 182, 213)},
+    {strip.Color(0, 128, 255), strip.Color(0, 200, 180), strip.Color(64, 64, 255)},
+    {strip.Color(0, 255, 128), strip.Color(0, 200, 255), strip.Color(160, 96, 255)}
+  };
+  const uint32_t backgrounds[] = {
+    strip.Color(0, 0, 16),
+    strip.Color(8, 0, 16),
+    strip.Color(0, 8, 16),
+    strip.Color(0, 0, 16)
+  };
+
+  const uint16_t holdTimes[] = {1300, 1500, 1300, 1500};
+
+  for(uint8_t cycle=0; cycle<2; cycle++) {
+    for(uint8_t shapeIndex=0; shapeIndex<4; shapeIndex++) {
+      drawMagicShape(shapes[shapeIndex], backgrounds[shapeIndex], palettes[shapeIndex], paletteSizes[shapeIndex]);
+      shimmerMagicShape(shapes[shapeIndex], palettes[shapeIndex], paletteSizes[shapeIndex], backgrounds[shapeIndex], 18, 40);
+      delay(holdTimes[shapeIndex]);
+    }
+  }
 }
 
 static void chase(uint32_t c) {
